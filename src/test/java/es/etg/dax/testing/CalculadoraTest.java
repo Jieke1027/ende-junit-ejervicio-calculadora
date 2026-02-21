@@ -24,11 +24,11 @@ public class CalculadoraTest {
     }
 
     @Test
-    void sumarPositivosMal() {
+    void sumarPositivosCorregido() {
 
         int valor1 = 2;
         int valor2 = 3;
-        int esperado = 4;
+        int esperado = 5;
 
         assertEquals(esperado, Calculadora.sumar(valor1, valor2));
     }
