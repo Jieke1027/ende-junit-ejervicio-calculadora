@@ -11,20 +11,8 @@ import es.etg.dax.testing.exception.OperacionNoValidaException;
 // Las clases de test suelen tener el sufijo Test
 public class CalculadoraTest {
 
-    Calculadora calculadora = new Calculadora(); //
-
     @Test
     void sumarPositivos() {
-
-        int valor1 = 2;
-        int valor2 = 3;
-        int esperado = 5;
-
-        assertEquals(esperado, Calculadora.sumar(valor1, valor2));
-    }
-
-    @Test
-    void sumarPositivosCorregido() {
 
         int valor1 = 2;
         int valor2 = 3;

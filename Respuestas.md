@@ -12,10 +12,11 @@ Este proyecto es un ejemplo de **pruebas unitarias** (tests) con **JUnit 5**. En
 
 ## 2) Revisa las pruebas de la suma y comenta lo que te parezca de interes
 
-- Las pruebas estan en `src/test/java` y prueban metodos **static** de `Calculadora`.
-- Hay tests simples con `assertEquals(...)` (un caso concreto).
-- Hay un test agrupado con `assertAll(...)` que ejecuta varios casos de suma en el mismo test.
-- En el proyecto original habia un test `sumarPositivosMal()` con el valor esperado mal (ponia 4 en vez de 5). Si un test esta mal, el proyecto fallara al ejecutar `mvn test`. En esta entrega se ha corregido.
+En CalculadoraTest hay pruebas de la suma con assertEquals y una prueba agrupada con assertAll.
+sumarPositivos y sumarPositivosCorregido comprueban el mismo caso (2+3=5), por lo que es redundante y se podria dejar solo una o cambiarla por otro caso.
+En la clase se crea un objeto Calculadora, pero no se utiliza, ya que los metodos se llaman de forma estatica (Calculadora.sumar(...)).
+La prueba sumar usa assertAll para validar varios casos en un solo test y añade mensajes para entender que caso falla.
+Como mejora de organizacion, separaria las pruebas de division (por ejemplo, la division por cero) en otra clase de test.
 
 ## 3) Estudio de caja negra de la division e implementacion en JUnit
 
