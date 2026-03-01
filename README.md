@@ -20,3 +20,5 @@ El alumno deberá hacer un fork de este proyecto, poner el repositorio como **pr
 
 
 **Si no se puede acceder al repositorio la evaluación del ejercicio será de 0. No se evaluarán entregas modificadas/entregadas fuera del plazo establecido en la tarea**
+
+**Las respuestas están en Respuestas.md**

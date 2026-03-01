@@ -1,41 +1,70 @@
-# Respuestas (RA3)
+# Testing con JUnit - Respuestas
 
-## 1) ¿Qué sentido puede tener este proyecto y para qué lo podrías usar?
-Para mí este proyecto sirve para practicar **tests unitarios con JUnit 5** en una clase simple (Calculadora).
-Lo usaría para aprender a comprobar automáticamente que los métodos funcionan y que los errores se controlan bien.
+**Jieke Zhuang 1DAW** 
 
----
+## 1) ¿Que sentido puede tener este proyecto y para que lo podrias usar?
 
-## 2) Revisa las pruebas de la suma y comenta lo que te parezca de interés
-En `CalculadoraTest` veo que:
-- Hay pruebas básicas con `assertEquals`.
-- También se usa `assertAll` para comprobar varios casos en un mismo test.
-- En este tipo de ejercicios a veces hay un test “mal” a propósito para ver cómo se ve un fallo en JUnit.
+Este proyecto es un ejemplo de **pruebas unitarias** (tests) con **JUnit 5**. En una empresa se podria usar para:
 
----
+- Comprobar automaticamente que los metodos (sumar, dividir, etc.) funcionan bien.
+- Detectar errores rapido cuando se cambia el codigo (evita "romper" funcionalidades antiguas).
+- Ejecutar los tests en cada entrega (por ejemplo, con `mvn test` o integracion continua) para asegurar calidad.
 
-## 3) Estudio de caja negra de la división e implementación en JUnit
+## 2) Revisa las pruebas de la suma y comenta lo que te parezca de interes
 
-### Clases de equivalencia (divisor b)
-- b = 0 → inválido → debe lanzar excepción
-- b > 0 → válido
-- b < 0 → válido
+- Las pruebas estan en `src/test/java` y prueban metodos **static** de `Calculadora`.
+- Hay tests simples con `assertEquals(...)` (un caso concreto).
+- Hay un test agrupado con `assertAll(...)` que ejecuta varios casos de suma en el mismo test.
+- En el proyecto original habia un test `sumarPositivosMal()` con el valor esperado mal (ponia 4 en vez de 5). Si un test esta mal, el proyecto fallara al ejecutar `mvn test`. En esta entrega se ha corregido.
 
-### Valores límite / casos típicos
-- b = 0 (frontera)
-- b = 1 y b = -1 (cerca del límite)
-- a = 0
-- caso de truncamiento en división entera: 9/2 = 4
+## 3) Estudio de caja negra de la division e implementacion en JUnit
 
-### Casos de prueba
-| Caso | a | b | Esperado |
-|------|---|---|----------|
-| 1 | 10 | 2 | 5 |
-| 2 | 9 | 2 | 4 |
-| 3 | -9 | 2 | -4 |
-| 4 | 9 | -2 | -4 |
-| 5 | -9 | -2 | 4 |
-| 6 | 0 | 5 | 0 |
-| 7 | 5 | 1 | 5 |
-| 8 | 5 | -1 | -5 |
-| 9 | 4 | 0 | Excepción |
+### Entradas y salida
+
+- Entradas: `a` (dividendo, `int`) y `b` (divisor, `int`).
+- Salida:
+  - Si `b != 0` devuelve `a / b` (division entera).
+  - Si `b == 0` lanza `OperacionNoValidaException`.
+
+### Clases de equivalencia
+
+**Para `a`:**
+- CEa1: `a < 0`
+- CEa2: `a = 0`
+- CEa3: `a > 0`
+
+**Para `b`:**
+- CEb1: `b < 0`
+- CEb2: `b = 0` (invalida -> excepcion)
+- CEb3: `b > 0`
+
+### Valores limite
+
+- Para `a`: `-1, 0, 1`
+- Para `b`: `-1, 0, 1` (el 0 es el limite invalido)
+
+### Conjetura de errores (errores tipicos)
+
+- Division por 0.
+- Signos (+/-).
+- Truncamiento de la division entera (ejemplo: `9/2 = 4`).
+
+### Casos de prueba (CP)
+
+| CP  | a  | b  | Esperado |
+|-----|---:|---:|----------|
+| CP1 |  9 |  2 | 4 |
+| CP2 | -9 |  2 | -4 |
+| CP3 |  9 | -2 | -4 |
+| CP4 | -9 | -2 | 4 |
+| CP5 |  0 |  5 | 0 |
+| CP6 |  0 | -5 | 0 |
+| CP7 |  4 |  0 | Excepcion |
+| CP8 | -4 |  0 | Excepcion |
+
+### Implementacion en JUnit
+
+Los CP anteriores se han implementado en `CalculadoraDivisionTest.java` con:
+
+- `assertEquals(...)` para los casos validos.
+- `assertThrows(...)` para los casos invalidos (b = 0).
