@@ -63,4 +63,9 @@ public class CalculadoraDivisionTest {
     void CP8_dividir_menos4_entre_0_lanza_excepcion() {
         assertThrows(OperacionNoValidaException.class, () -> Calculadora.dividir(-4, 0));
     }
+    @Test
+    @DisplayName("CP9: 0 / 0 lanza OperacionNoValidaException")
+    void CP9_dividir_0_entre_0_lanza_excepcion() {
+    assertThrows(OperacionNoValidaException.class, () -> Calculadora.dividir(0, 0));
+}
 }

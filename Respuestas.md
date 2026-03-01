@@ -61,6 +61,7 @@ Este proyecto es un ejemplo de **pruebas unitarias** (tests) con **JUnit 5**. En
 | CP6 |  0 | -5 | 0 |
 | CP7 |  4 |  0 | Excepcion |
 | CP8 | -4 |  0 | Excepcion |
+| CP9 |  0 |  0 | Excepcion |
 
 ### Implementacion en JUnit
 
